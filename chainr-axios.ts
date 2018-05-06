@@ -3,7 +3,8 @@ import * as deepmerge from 'deepmerge'
 import { Chainr, createInstance } from 'chainr-proxy'
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
 
-const isMergable = require('is-mergeable-object')
+// @ts-ignore
+import * as isMergable from 'is-mergeable-object'
 
 export interface ChainrAxios extends Chainr {
   [key: string]: ChainrAxios
