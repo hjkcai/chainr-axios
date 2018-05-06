@@ -19,13 +19,17 @@
     "url": "https://github.com/hjkcai/chainr-axios/issues"
   },
   "homepage": "https://github.com/hjkcai/chainr-axios#readme",
+  "dependencies": {
+    "axios": ">=0.18.0",
+    "chainr-proxy": "^1.0.0-beta",
+    "deepmerge": "^2.1.0"
+  },
   "devDependencies": {
+    "@types/deepmerge": "^2.1.0",
     "@types/node": "^10.0.0",
+    "buble": "^0.19.3",
     "tslint": "^5.9.1",
     "tslint-config-standard": "^7.0.0",
     "typescript": "^2.8.3"
-  },
-  "peerDependencies": {
-    "axios": ">=0.18.0"
   }
 }
