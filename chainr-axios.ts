@@ -46,13 +46,16 @@ export function createAxios (config: ChainrAxiosRequestConfig = {}): ChainrAxios
 
     config = deepmerge(config, nonNullable(extraConfig))
 
+    let dataKey: 'data' | 'params' = 'params'
     const method = (config.method || '').trim().toLowerCase()
     if (method === 'post' || method === 'put' || method === 'patch') {
-      if (data != null) config.data = deepmerge(nonNullable(config.data), data)
-      else if (data === null) config.data = null
-    } else {
-      if (data != null) config.params = deepmerge(nonNullable(config.params), data)
-      else if (data === null) config.params = null
+      dataKey = 'data'
+    }
+
+    if (data === null) {
+      config[dataKey] = null
+    } else if (data !== undefined) {
+      config[dataKey] = deepmerge(nonNullable(config[dataKey]), data)
     }
 
     return instance(config)
