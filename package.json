@@ -2,8 +2,20 @@
   "name": "chainr-proxy-axios",
   "version": "1.0.0-beta",
   "description": "Making request by magic methods",
+  "main": "dist/chainr-axios.cjs.js",
+  "module": "dist/chainr-axios.esm.js",
+  "typings": "chainr-axios.d.ts",
+  "files": [
+    "dist",
+    "chainr-axios.ts",
+    "chainr-axios.d.ts"
+  ],
   "scripts": {
-    "build": "tsc -p . && buble chainr-axios.js --yes dangerousForOf --no modules -o chainr-axios.js",
+    "buble": "buble dist --yes dangerousForOf --no modules -o dist",
+    "build": "npm run build:cjs && npm run build:esm && mv dist/chainr-axios.d.ts ./ && npm run buble",
+    "build:cjs": "tsc -p . --module commonjs --outDir dist && mv dist/chainr-axios.js dist/chainr-axios.cjs.js",
+    "build:esm": "tsc -p . --outDir dist && mv dist/chainr-axios.js dist/chainr-axios.esm.js",
+    "clean": "rm -rf dist && rm -f chainr-axios.d.ts",
     "lint": "tslint -p .",
     "test": "tsc -p . --module commonjs && mocha chainr-axios.spec.js"
   },

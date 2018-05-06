@@ -58,9 +58,8 @@ typings/
 .env
 
 # TypeScript compiled
-chainr-axios.js
+dist
 chainr-axios.d.ts
-test/*.js
 
 # macOS
 .DS_Store
