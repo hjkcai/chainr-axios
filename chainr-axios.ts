@@ -40,13 +40,15 @@ export function createAxios (config: ChainrAxiosRequestConfig = {}): ChainrAxios
       }
     }
 
-    const method = (config.method || '').toLowerCase()
-    if (method === 'post' || method === 'put' || method === 'patch') {
-      if (config.data === undefined) {
-        config.data = data
+    if (data !== undefined) {
+      const method = (config.method || '').toLowerCase()
+      if (method === 'post' || method === 'put' || method === 'patch') {
+        if (config.data === undefined) {
+          config.data = data
+        }
+      } else if (config.params === undefined) {
+        config.params = data
       }
-    } else if (config.params === undefined) {
-      config.params = data
     }
 
     return instance(config)
