@@ -39,6 +39,15 @@ export function createAxios ({ rules = [], instance = axios, ...baseConfig }: Ch
       }
     }
 
+    const method = (config.method || '').toLowerCase()
+    if (method === 'post' || method === 'put' || method === 'patch') {
+      if (config.data === undefined) {
+        config.data = data
+      }
+    } else if (config.params === undefined) {
+      config.params = data
+    }
+
     return instance(config)
   })
 }
