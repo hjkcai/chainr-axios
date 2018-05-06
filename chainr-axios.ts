@@ -18,6 +18,11 @@ export interface ChainrAxiosRequestConfig extends AxiosRequestConfig {
   instance?: AxiosInstance
 }
 
+function nonNullable (obj: any): any {
+  if (obj == null) return {}
+  return obj
+}
+
 export function createAxios (config: ChainrAxiosRequestConfig = {}): ChainrAxios {
   const { rules = [], instance = axios, ...baseConfig } = config
   const collectedRules = rules.map(rule => {
@@ -39,17 +44,15 @@ export function createAxios (config: ChainrAxiosRequestConfig = {}): ChainrAxios
       }
     }
 
-    if (data !== undefined) {
-      const method = (config.method || '').toLowerCase()
     config = deepmerge(config, nonNullable(extraConfig))
 
-      if (method === 'post' || method === 'put' || method === 'patch') {
-        if (config.data === undefined) {
-          config.data = data
-        }
-      } else if (config.params === undefined) {
-        config.params = data
-      }
+    const method = (config.method || '').trim().toLowerCase()
+    if (method === 'post' || method === 'put' || method === 'patch') {
+      if (data != null) config.data = deepmerge(nonNullable(config.data), data)
+      else config.data = null
+    } else {
+      if (data != null) config.params = deepmerge(nonNullable(config.params), data)
+      else config.params = null
     }
 
     return instance(config)
