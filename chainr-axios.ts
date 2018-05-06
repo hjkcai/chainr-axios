@@ -17,7 +17,8 @@ export interface ChainrAxiosRequestConfig extends AxiosRequestConfig {
   instance?: AxiosInstance
 }
 
-export function createAxios ({ rules = [], instance = axios, ...baseConfig }: ChainrAxiosRequestConfig = {}): ChainrAxios {
+export function createAxios (config: ChainrAxiosRequestConfig = {}): ChainrAxios {
+  const { rules = [], instance = axios, ...baseConfig } = config
   const collectedRules = rules.map(rule => {
     const { match, alterConfig, ...config } = rule
     return { match, alterConfig, config }
