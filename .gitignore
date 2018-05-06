@@ -60,6 +60,7 @@ typings/
 # TypeScript compiled
 chainr-axios.js
 chainr-axios.d.ts
+test/*.js
 
 # macOS
 .DS_Store
