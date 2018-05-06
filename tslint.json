@@ -1,0 +1,18 @@
+{
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint-config-standard"
+  ],
+  "rules": {
+    "no-floating-promises": false,
+    "no-unnecessary-type-assertion": false,
+    "no-unused-expression": false,
+    "prefer-const": [{ "destructuring": "all" }, true],
+    "prefer-for-of": true,
+    "prefer-method-signature": true,
+    "radix": false,
+    "strict-type-predicates": false,
+    "triple-equals": ["allow-null-check", true],
+    "unified-signatures": false
+  }
+}
