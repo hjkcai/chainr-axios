@@ -344,6 +344,10 @@ typescript@^2.8.3:
   version "2.8.3"
   resolved "http://registry.npm.taobao.org/typescript/download/typescript-2.8.3.tgz#5d817f9b6f31bb871835f4edf0089f21abe6c170"
 
+url-join@^4.0.0:
+  version "4.0.0"
+  resolved "http://registry.npm.taobao.org/url-join/download/url-join-4.0.0.tgz#4d3340e807d3773bda9991f8305acdcc2a665d2a"
+
 vlq@^0.2.2:
   version "0.2.3"
   resolved "http://registry.npm.taobao.org/vlq/download/vlq-0.2.3.tgz#8f3e4328cf63b1540c0d67e1b2778386f8975b26"

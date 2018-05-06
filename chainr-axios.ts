@@ -1,3 +1,4 @@
+import * as join from 'url-join'
 import * as deepmerge from 'deepmerge'
 import { Chainr, createInstance } from 'chainr-proxy'
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
@@ -27,7 +28,7 @@ export function createAxios (config: ChainrAxiosRequestConfig = {}): ChainrAxios
   return createInstance(function dispatch (keys, [data, extraConfig]) {
     let config: AxiosRequestConfig = deepmerge(
       baseConfig,
-      { url: keys.join('/') },
+      { url: join(...keys.map(key => key.toString())) },
       extraConfig
     )
 

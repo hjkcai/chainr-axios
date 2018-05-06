@@ -26,7 +26,8 @@
   "dependencies": {
     "axios": ">=0.18.0",
     "chainr-proxy": "^1.0.0-beta",
-    "deepmerge": "^2.1.0"
+    "deepmerge": "^2.1.0",
+    "url-join": "^4.0.0"
   },
   "devDependencies": {
     "@types/deepmerge": "^2.1.0",
