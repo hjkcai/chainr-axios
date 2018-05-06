@@ -1,6 +1,6 @@
 {
   "name": "chainr-proxy-axios",
-  "version": "1.0.0-alpha",
+  "version": "1.0.0-beta",
   "description": "Making request by magic methods",
   "scripts": {
     "build": "tsc -p . && buble chainr-axios.js --yes dangerousForOf --no modules -o chainr-axios.js",
