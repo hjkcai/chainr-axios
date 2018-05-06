@@ -26,11 +26,9 @@ export function createAxios (config: ChainrAxiosRequestConfig = {}): ChainrAxios
   })
 
   return createInstance(function dispatch (keys, [data, extraConfig]) {
-    let config: AxiosRequestConfig = deepmerge(
-      baseConfig,
-      { url: join(...keys.map(key => key.toString())) },
-      extraConfig
-    )
+    let config: AxiosRequestConfig = deepmerge(baseConfig,{
+      url: join(...keys.map(key => key.toString()))
+    })
 
     for (const rule of collectedRules) {
       if (rule.match.test(config.url!)) {
@@ -43,6 +41,8 @@ export function createAxios (config: ChainrAxiosRequestConfig = {}): ChainrAxios
 
     if (data !== undefined) {
       const method = (config.method || '').toLowerCase()
+    config = deepmerge(config, nonNullable(extraConfig))
+
       if (method === 'post' || method === 'put' || method === 'patch') {
         if (config.data === undefined) {
           config.data = data
