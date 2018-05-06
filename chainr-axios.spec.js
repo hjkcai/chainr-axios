@@ -290,7 +290,7 @@ describe('chainr-axios', () => {
       })
     })
 
-    describe('should merge with the existing', () => {
+    describe('should merge with the existing data if data is an plain object', () => {
       it('data', function () {
         this.req.data({ test: { test: true, a: 1 } })
         expect(this.instance).to.be.calledWith({
@@ -310,8 +310,8 @@ describe('chainr-axios', () => {
       })
     })
 
-    describe('should be null if null is passed', () => {
-      it('data', function () {
+    describe('should replace the existing data is data is not undefined and not mergable', () => {
+      it('null', function () {
         this.req.data(null)
         expect(this.instance).to.be.calledWith({
           url: 'data',
@@ -320,12 +320,23 @@ describe('chainr-axios', () => {
         })
       })
 
-      it('params', function () {
-        this.req.params(null)
+      it('Date', function () {
+        const date = new Date()
+        this.req.data(date)
         expect(this.instance).to.be.calledWith({
-          url: 'params',
-          method: 'get',
-          params: null
+          url: 'data',
+          method: 'post',
+          data: date
+        })
+      })
+
+      it('RegExp', function () {
+        const regexp = /./ig
+        this.req.data(regexp)
+        expect(this.instance).to.be.calledWith({
+          url: 'data',
+          method: 'post',
+          data: regexp
         })
       })
     })

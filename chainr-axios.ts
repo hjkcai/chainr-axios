@@ -3,6 +3,8 @@ import * as deepmerge from 'deepmerge'
 import { Chainr, createInstance } from 'chainr-proxy'
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
 
+const isMergable = require('is-mergeable-object')
+
 export interface ChainrAxios extends Chainr {
   [key: string]: ChainrAxios
   <T>(data?: any, config?: AxiosRequestConfig): Promise<T>
@@ -52,10 +54,12 @@ export function createAxios (config: ChainrAxiosRequestConfig = {}): ChainrAxios
       dataKey = 'data'
     }
 
-    if (data === null) {
-      config[dataKey] = null
-    } else if (data !== undefined) {
-      config[dataKey] = deepmerge(nonNullable(config[dataKey]), data)
+    if (data !== undefined) {
+      if (!isMergable(data)) {
+        config[dataKey] = data
+      } else {
+        config[dataKey] = deepmerge(nonNullable(config[dataKey]), data)
+      }
     }
 
     return instance(config)
