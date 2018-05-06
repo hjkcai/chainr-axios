@@ -58,15 +58,8 @@ typings/
 .env
 
 # TypeScript compiled
-dist/**/*.js
-dist/**/*.js.map
-dist/**/*.d.ts
-test/**/*.js
-test/**/*.js.map
-test/**/*.d.ts
+chainr-axios.js
+chainr-axios.d.ts
 
 # macOS
 .DS_Store
-
-# rollup cache
-.rpt2_cache
