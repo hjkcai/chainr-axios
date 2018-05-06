@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
     "lib": ["es6"],
-    "target": "es6",
+    "target": "esnext",
     "module": "es6",
     "moduleResolution": "node",
-    "sourceMap": true,
+    "declaration": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": [
-    "src"
+  "files": [
+    "chainr-axios.ts"
   ]
 }
